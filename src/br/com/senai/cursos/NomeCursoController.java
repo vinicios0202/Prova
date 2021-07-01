@@ -32,14 +32,15 @@ public class NomeCursoController {
 	public List<NomeCursos> listarCursos(List<NomeCursos> nomeCursos) {
 		
 		if(nomeCursos.isEmpty()) {
-			System.out.println("Não Possui produtos listados.");
+			System.out.println("Não nenhum curso listado.");
 			return null;
 		}
 		
 		System.out.println("---- CURSOS CADASTRADOS ----");
 
 		System.out.printf("| %2s | %10s |\n", "id", "Curso");
-		System.out.println(" -------------------------------------------------");
+		System.out.println(" ---------------------------------------------------------"
+				+ "-------------------------------------------------------------------");
 		for (int i = 0; i < nomeCursos.size(); i++) {
 			System.out.printf("| %2d | %10s |\n",
 					i + 1,
@@ -87,7 +88,7 @@ public class NomeCursoController {
 		if(nomeCursos.isEmpty()) {
 			return;
 		}
-		System.out.println("----Excluir Curso ----");
+		System.out.println("---- Excluir Curso ----");
 		
 		System.out.println("Infomre o id do Curso para excluir: ");
 		int idCurso = tec.nextInt() - 1;
@@ -100,12 +101,34 @@ public class NomeCursoController {
 		nomeCursos.remove(idCurso);
 	}
 	public void menu(List<NomeCursos> nomeCursos){
-		System.out.print("\n-------- MENU ---------");
-		System.out.print("1) Cadastrar Cursos");
-		System.out.print("2) Listar Cursos");
+		System.out.println("\n************ MENU *************");
+		System.out.println("1) Cadastrar Cursos");
+		System.out.println("2) Listar Cursos");
+		System.out.println("3) Editar Curso");
+		System.out.println("4) Excluir Curso");
 		
 		int opcao = tec.nextInt();
 		switch (opcao) {
+		
+		case 1:
+			nomeCursos.add(cadastrarCursos());
+			break;
+			
+		case 2:
+			listarCursos(nomeCursos);
+			break;
+			
+		case 3:
+			editarCursos(nomeCursos);
+			break;
+			
+		case 4:
+			excluirCurso(nomeCursos);
+			break;
+			
+		default:
+			System.out.println("Opção Incorreta");
+			break;
 		}
 		}
 }

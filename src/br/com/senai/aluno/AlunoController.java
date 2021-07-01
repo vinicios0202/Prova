@@ -3,6 +3,7 @@ package br.com.senai.aluno;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class AlunoController {
 	
 	private Scanner tec;
@@ -51,19 +52,20 @@ public class AlunoController {
 	public List<Aluno> listarAlunos(List<Aluno> alunos) {
 		
 		if (alunos.isEmpty()) {
-			System.out.println("Não possui dados para listar.");
+			System.out.println("Não possui aluno para ser listado.");
 			return null;
 		}
 		
 		System.out.println("--- ALUNOS CADASTRADOS ---");
 		
 		System.out.printf(
-				"| %2s | %8s | %4s | %5s | %6s | %6s | %5s | %10s | %5s |\n", "id", "Nome", "Ano", "Idade",
+				"| %2s | %10s | %4s | %5s | %10s | %5s | %15s | %5s | %15s |\n", "id", "Nome", "Ano", "Idade",
 				"Pais", "Sigla", "Estado", "UF", "Cidade");
-		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("---------------------------------------------------------------------------------------"
+				+ "------------------------------------------------------------------------------------------------");
 		for (int i = 0; i < alunos.size(); i++) {
 			System.out.printf(
-					"| %2s | %8s | %4d | %5d | %6.2f | %6s | %5s | %10s | %5s |\n",
+					"| %2s | %10s | %4d | %5d | %10s | %5s | %15s | %5s | %15s |\n",
 					i + 1, alunos.get(i).getNomeAluno(), alunos.get(i).getAnoDeNascimento(), alunos.get(i).getIdadeAluno(),
 					alunos.get(i).getNomeDoPais(), alunos.get(i).getSiglaDoPais(), alunos.get(i).getNomeDoEstado(),
 					alunos.get(i).getUf(), alunos.get(i).getNomeDaCidade());
@@ -211,7 +213,7 @@ public class AlunoController {
 			if(alunos.isEmpty()) {
 				return;
 		}
-			System.out.println("----Excluir Aluno----");
+			System.out.println("---- Excluir Aluno ----");
 		
 			System.out.println("Informe o id do Aluno para excluir: ");
 			int idAluno = tec.nextInt() - 1;
@@ -220,10 +222,12 @@ public class AlunoController {
 				System.out.println("Aluno não cadastrado.");
 				return;
 		}
-			
+
 			alunos.remove(idAluno);
 			
 		}
+		
+		
 		
 		public void menu(List<Aluno> alunos) {
 			System.out.println("\n********* MENU *********");
@@ -233,6 +237,31 @@ public class AlunoController {
 			System.out.println("4) excluir Alunos");
 
 			System.out.println("Informe a opção desejada: ");
+			
+			int opcao = tec.nextInt();
+			switch (opcao) {
+			case 1:
+				alunos.add(cadastrarAluno());
+				break;
+				
+			case 2:
+				listarAlunos(alunos);
+				break;
+				
+			case 3:
+				editarAlunos(alunos);
+				break;
+				
+			case 4: 
+				excluirAluno(alunos);
+				break;
+				
+
+			default:
+				System.out.println("Opção invalida");
+				break;
+
+			}
 		}
 			
 	
